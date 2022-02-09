@@ -47,7 +47,7 @@ def menu():
 		os.system('rm -rf token.txt')
 		login()
 	print("")
-	km = input('*komen    : ')
+	km = input('*link post   : ')
 	try:
 		p = requests.get("https://graph.facebook.com/100024551913570?fields=feed.limit(10000)&access_token="+toket)
 		a = json.loads(p.text)
