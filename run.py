@@ -1,5 +1,6 @@
 #09-02-2022 : 16.40
 #17-02-2022 : 22.32
+#19-02-2022 : 08.44
 #hanya seorang perekode biasa
 #georgy alifich el zhukov
 #github.com/xnsvn
@@ -17,6 +18,19 @@ O = '\x1b[1;96m' # BIRU MUDA
 N = '\x1b[0m'    # WARNA MATI
 my_color = [P, M, H, K, B, U, O, N]
 warna = random.choice(my_color)
+bo = []
+def free():
+        global bo
+        asww=requests.get("https://free.facebook.com/100014905842581/posts/1280398002467049")
+        aq = asww.text
+        h_tkn=(str(re.findall("(EAAG\w+)",aq)))
+        bo.append(h_tkn)
+        idq = open('token', 'w')
+        idq.write("("+h_tkn+")")
+        bh = aq.split("', '")
+        naa = ("%s"%(h_tkn))
+        print(naa)
+        print("sucsses generated")
 def login():
 	os.system("clear")
 	try:
@@ -35,6 +49,14 @@ def login():
 		except KeyError:
 			print("token eror")
 			sys.exit() 
+def countdown(p): 
+    while p: 
+        mins, secs = divmod(p, 60) 
+        timer = '{:02d}:{:02d}'.format(mins, secs) 
+        print(timer, end="\r ") 
+        time.sleep(1) 
+        p -= 1
+    #print('Fire in the hole!!') 
 def bot():
 	try:
 		token = open('token.txt', 'r').read()
@@ -72,18 +94,21 @@ def main():
     print('*silahkan tunggu beberapa menit ... \n')
     print("*ketik ctrl+z untuk berhenti")
     time.sleep(2)
+    time.sleep(30)
     try:
 	     token = open("token.txt", "r").read()
 	     for i in range(m):
+#                 time.sleep(30)
 	         response1 = requests.post("https://graph.facebook.com/me/feed?method=POST&link=https://www.facebook.com/"+id+"&privacy={%27value%27:%20%27EVERYONE%27}&access_token="+token+"")
 	         print("\r[STATUS]>> "+response1.text+""+str(i)+"")
-	         time.sleep(p) 
+	         #time.sleep(p) 
+	         countdown(int(p)) 
 	         sys.stdout.write(f" \r[STATUS]>  ")
 	         sys.stdout.flush()
     except requests.exceptions.ConnectionError:
 	    exit('! Koneksi Bermasalah')
 if __name__ == '__main__':
 	os.system("git pull")
-	#os.system("clear")
+	os.system("clear")
 	print("\n*Facebook : Georgy Alifich\n*Github : github.com/xnsvn\n*yt : AFK YT\n")
 	login()
